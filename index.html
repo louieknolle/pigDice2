@@ -9,6 +9,46 @@
 </head>
 <body>
   <div class="container">
+    <div class="jumbotron jumbotron-fluid text-center">
+      <h1>Pig Dice!</h1>
+    </div>
+    <div class="start-menu">
+      <form id="player1">
+        <div class="form-group">
+          <label for="player1name">Player 1 Name:</label>
+          <input required type="text"  class="form-control" id="player1name">
+        </div>
+      </form>
+      <form id="player2">
+        <div class="form-group">
+          <label for="player2name">Player 2 Name:</label>
+          <input required type="text"  class="form-control" id="player2name">
+        </div>
+      </form>
+      <button id="start" class="btn btn-info">Start</button>
+    </div>
+    <div class="player-console">
+      <button id="newGame" class="btn-warning btn">New Game</button>
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Player 1: <span id="player1Name"></span></h2>
+          <button id="player1Roll" class="btn-success btn">Roll</button>
+          <button id="player1Hold" class="btn-danger btn">Hold</button>
+          <h2>Dice Roll: <span id="dieRoll1"></span></h2>
+          <p>Current Score: <span id="currentScore1"></span></p>
+          <p>Total Score: <span id="totalScore1"></span></p>
+        </div>
+        <div class="col-md-6">
+          <h2>Player 2: <span id="player2Name"></span></h2>
+          <button id="player2Roll" class="btn-success btn">Roll</button>
+          <button id="player2Hold" class="btn-danger btn">Hold</button>
+          <h2>Dice Roll: <span id="dieRoll2"></span></h2>
+          <p>Current Score: <span id="currentScore2"></span></p>
+          <p>Total Score: <span id="totalScore2"></span></p>
+        </div>
+      </div>
+    </div>
+
     
   </div>
   
