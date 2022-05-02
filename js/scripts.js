@@ -1,14 +1,20 @@
 // Business Logic
-
-const randomRoll = Math.floor(Math.random() * 6) + 1;
-
-function Player(tonyPlayer, mikePlayer) {
-  this.tonyPlayer = tonyPlayer; 
-  this.mikePlayer = mikePlayer;
-  this.currentPlayer;
-  this.gameBegin = false; 
+function Player(playerNum) {
+  this.playerNumber = playerNum;
+  this.score = 0;
 }
-Player.prototype.switchCurrentPlayer = function() {
+
+function Rolldice(){
+  let diceRoll = Math.floor((Math.random() * 6) + 1);
+  return diceRoll;
+
+//function Player(tonyPlayer, mikePlayer) {
+  //this.tonyPlayer = tonyPlayer; 
+  //this.mikePlayer = mikePlayer;
+ // this.currentPlayer;
+  //this.gameBegin = false; 
+}
+//Player.prototype.switchCurrentPlayer = function() {
   if () {
 
   }
