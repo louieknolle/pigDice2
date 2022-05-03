@@ -1,24 +1,41 @@
 // Business Logic
-function Player(playerNum) {
-  this.playerNumber = playerNum;
-  this.score = 0;
+function Player(playerNumber) {
+  this.playerNumber = playerNumber;
+  this.totalScore = 0;
+  this.currentSum = 0;
+  this.currentRoll = 0;
 }
 
 function Rolldice(){
   let diceRoll = Math.floor((Math.random() * 6) + 1);
   return diceRoll;
+}
+
+Player.prototype = new dispatchEvent();
+Player.prototype.takeTurn = function() {
+  this.currentRoll = this.rollDice();
+  this.currentSum = (this.currentRoll === 1) ? 0 : this.currentSum + this.currentRoll;
+}
+Player.prototype.hold = function() {
+  this.totalScore = this.total + this.turn;
+  this.currentRoll = 0;
+  this.currentSum = 0;
+}
+Player.prototype.reset = function() {
+  this.totalScore = 0;
+  this.currentSum = 0;
+  this.currentRoll = 0;
+}
+
+
 
 //function Player(tonyPlayer, mikePlayer) {
   //this.tonyPlayer = tonyPlayer; 
   //this.mikePlayer = mikePlayer;
  // this.currentPlayer;
   //this.gameBegin = false; 
-}
+//
 //Player.prototype.switchCurrentPlayer = function() {
-  if () {
-
-  }
-}
 
 
 // alt object
