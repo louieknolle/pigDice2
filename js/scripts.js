@@ -10,8 +10,8 @@
    // Maybe we could have a Game object and constructor. 
    // The game could then track the current active player. 
 
-function Player(playerNumber, playerName) {
-  this.playerNumber = playerNumber;
+function Player(playerName) {
+  this.playerNumber = 0;
   this.playerName = playerName;
   this.totalScore = 0;
   this.currentSum = 0;
@@ -24,16 +24,20 @@ function rollDice(){
   return diceRoll;
 }
 
-// Player.prototype = new dispatchEvent();
-Player.prototype.takeTurn = function() {
-  this.currentRoll = this.rollDice();
-  this.currentSum = (this.currentRoll === 1) ? 0 : this.currentSum + this.currentRoll;
+Player.prototype.addCurrentSum = function() {
+  if (this.currentRoll === 1) {
+    return this.currentSum = 0;
+  } else return this.currentSum += this.currentRoll;
 }
+
 Player.prototype.hold = function() {
   this.totalScore = this.totalScore + this.currentSum;
   this.currentRoll = 0;
-  this.currentSum = 0;
+  if (this.totalScore >= 100) {
+    console.log(this.playerName + " Has Won!")
+  };
 }
+
 //Player.prototype.reset = function() {
 //   this.totalScore = 0;
 //   this.currentSum = 0;
@@ -44,34 +48,79 @@ Player.prototype.hold = function() {
 
 // UI Logic 
 $(document).ready(function() {
+  const player1 = new Player();
+  const player2 = new Player();
+
   $('form#newPlayers').submit(function(event) {
     event.preventDefault();
     const player1Name = $('input#player1Name').val();
     const player2Name = $('input#player2Name').val();
-    let player1 = new Player(1, player1Name);
-    let player2 = new Player(2, player2Name);
 
-    // player1.playerName = player1Name;
-    // player2.playerName = player2Name;
-    // console.log(player1);
-    
+    player1.playerName = player1Name;
+    player2.playerName = player2Name; 
     $('.start-menu').hide();
-    $('.player-console').show();
+    $('.player1Box').show();
 
-    $('span#player1').html(player1Name); 
-    $('span#player2').html(player2Name);
+    $('span#player1Info').html(player1Name); 
+    $('span#player2Info').html(player2Name);
 
   });
 
-  $('.player1Roll').click(function(event) {
-    // player1.currentRoll = rollDice();
-    // console.log(player1.currentRoll);
-    player1.takeTurn();
+  $('#player1Roll').click(function(event) {
+    player1.currentRoll = rollDice();
     $('#dieRoll1').html(player1.currentRoll);
-    
+    if (player1.currentRoll === 1) {
+    $('.player1Box').toggle();
+    $('.player2Box').toggle();
+    $('#dieRoll1').html('');
+    $('#currentScore1').html('');
+    player1.currentRoll = 0;
+    player1.currentSum = 0;
+    } else {
+    player1.addCurrentSum();
     $('#currentScore1').html(player1.currentSum);
+    }
+  })
+
+  $('#player1Hold').click(function(event) {
+    player1.hold();
+    $('#totalScore1').html(player1.totalScore);
+    $('.player1Box').toggle();
+    $('.player2Box').toggle();
+    $('#dieRoll1').html('');
+    $('#currentScore1').html('');
+    player1.currentRoll = 0;
+    player1.currentSum = 0;
+  })
+
+  $('#player2Roll').click(function(event) {
+    player2.currentRoll = rollDice();
+    $('#dieRoll2').html(player2.currentRoll);
+    if (player2.currentRoll === 1) {
+    $('.player1Box').toggle();
+    $('.player2Box').toggle();
+    $('#dieRoll2').html('');
+    $('#currentScore2').html('');
+    player2.currentRoll = 0;
+    player2.currentSum = 0;
+    } else {
+    player2.addCurrentSum();
+    $('#currentScore2').html(player2.currentSum);
+    }
+  })
+
+  $('#player2Hold').click(function(event) {
+    player2.hold();
+    $('#totalScore2').html(player2.totalScore);
+    $('.player2Box').toggle();
+    $('.player1Box').toggle();
+    $('#dieRoll2').html('');
+    $('#currentScore2').html('');
+    player2.currentRoll = 0;
+    player2.currentSum = 0;
     
   })
+
 });
 
 

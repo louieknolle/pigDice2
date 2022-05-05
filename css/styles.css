@@ -1,10 +1,15 @@
+.player1Box, .player2Box {
+  display: none;
+}
+
+
 .jumbotron {
   background-color: #cc32cc;
   padding-top: 10px;
   padding-bottom: 10px;
-}
+} 
 
-.start-menu {
+/* .start-menu {
   display: flex;
   width: 60%;
   margin: auto;
@@ -27,8 +32,5 @@
 
 #player1Name, #player2Name {
   
-}
+} */
 
-.player-console {
-  /* display: none; */
-}
